@@ -66,20 +66,16 @@ $ bash get_data.sh glove
 ## Datasets
 
 ### SNLI
+The SNLI corpus is a benchmark for evaluating natural language inference models. It contained 570k human-written English sentence pairs manually labeled either entailment, contradiction, or neutral. The dataset can be downloaded using:
 ```bash
 $ bash get_data.sh snli
 ```
-
-The SNLI corpus is a benchmark for evaluating natural language inference models. It contained 570k human-written English sentence pairs manually labeled either entailment, contradiction, or neutral. The transformer classification model is used is applied to this task. It uses the pretrained language model params from https://github.com/openai/finetune-transformer-lm. These weights along with the dataset can be downloaded using the get_data.sh script:
-
+The transformer classification model is used is applied to this task. It uses the pretrained language model params from https://github.com/openai/finetune-transformer-lm. These weights downloaded using:
 ```bash
-$ bash get_data.sh snli pretrained_lm
+$ bash get_data.sh pretrained_lm
 # and then train
 $ python train_transformer_snli.py
 ```
-
-
-
 
 ### SQuAD
 The [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a dataset for machine reading comprehension, questions and passages are created from Wikipedia articles, the answer to every question is a segment of text from the reading passage.
@@ -94,23 +90,33 @@ $ python train_transformer_qa_gen.py
 ```
 
 ### Wikitext
+The WikiText dataset is a collection of over 100 million tokens extracted Wikipedia articles for machine language modeling. It can be downloaded using:
 ```bash
 $ bash get_data.sh wikitext
 ```
+The Transformer and MLSTM language models are trained on this dataset:
+```bash
+$ python train_transformer_lm.py
+# or 
+$ python train_mlstm_lm.py
+```
+
 
 ## Pretrained Vectors
 
 ### GloVe
+Pretrained 300d [GloVe](https://nlp.stanford.edu/pubs/glove.pdf) vectors are available for download. Matrix is truncated to the first 400k tokens. Vectors are used to train QANet.
 ```bash
 $ bash get_data.sh glove
 ```
-
 ### ELMo
+Pretrained 768d [ELMo](https://arxiv.org/pdf/1802.05365.pdf) vectors are available for download. Matrix contains 40k vectors. Used to train MLSTM language model.
 ```bash
 $ bash get_data.sh elmo
 ```
 
 ### Pretrained Language Model
+Weights from https://github.com/openai/finetune-transformer-lm. Used to train Transformer Language, Transformer SNLI, and Transformer Question Generation models.
 ```bash
 $ bash get_data.sh pretrained_lm
 ```
