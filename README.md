@@ -67,9 +67,10 @@ Download pretrained GloVe vectors using (Common Crawl 300 dimensional truncated 
 ```bash
 $ bash get_data.sh glove
 ```
-
 Train with:
 ```bash
+$ bash get_data.sh squad
+
 $ python train_qa_net.py
 ```
 ## Datasets
@@ -137,13 +138,14 @@ General training params (there are others):
 --n_gpu # number of gpus to use (set to 1 for cpu)
 --n_iter # num epochs
 --n_batch # batch size
-```
 
+# example:
+$ python train_transformer_lm --n_batch 8 --n_iter 3  --submit
+```
 ## Saved Params
 By default, model parameters that achieve the best results will be saved under /master/save/model_description/best_params.jl. Using the --use_prev_best flag during training will cause the model to use the previous best saved params instead of the regular param initialization.
 ## Papers:
 Main papers used as references:
-
 * [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
 * [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)
 * [QANet: Combining Local Convolution With Global Self-Attention For Reading Comprehension](https://arxiv.org/pdf/1804.09541.pdf)
