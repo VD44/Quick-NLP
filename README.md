@@ -3,6 +3,7 @@ A collection of NLP models and training scripts.
 
 Work in progress.
 ## Contents
+* [Installation](#installation)
 * [Models](#models)
   * [MLSTM](#mlstm-language-model)
   * [Transformer Decoder Language Model](#transformer-decoder-language-model)
