@@ -34,7 +34,7 @@ The decoder component of the architecture described in [Attention Is All You Nee
 
 <img src="./transformer_decoder.png" width="25%">
 
-A single block of the decoder is depicted, be default the model uses 12. The multihead attention is masked such that at every timestep the model can only attend to values up until that timestep. This maintains the autoregressive property of the model. The authors of [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) found that a model pretrained on a large corpus of text can be easily finetuned to model new tasks. In their experiements they pretrained a model on 8 P600 GPU's for 30 days. We use the pretrained weights they published from their experiments as a starting point for the language model. Their code is available at: https://github.com/openai/finetune-transformer-lm. 
+A single block of the decoder is depicted, be default the model uses 12. The multihead attention is masked such that at every timestep the model can only attend to values up until that timestep. This maintains the autoregressive property of the model. The authors of [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) found that a model pretrained on a large corpus of text can be easily finetuned to model new tasks. In their experiements they pretrained a model on 8 P600 GPU's for 30 days. After finetuning, their model beat the state of the art for 9 of the 12 studied tasks. We use the pretrained weights they published from their experiments as a starting point for the language model. Their code is available at: https://github.com/openai/finetune-transformer-lm. 
 
 Pretrained weights can be imported using:
 ```bash
@@ -42,6 +42,12 @@ $ bash get_data.sh pretrained_lm
 ```
 
 ### Transformer Entailment
+Machine Textual Entailment is the task of labeling a pair of statements as being an entailment, a contradiction, or neutral. In this example we finetune a model initialized with the weights described in the Transformer Language Model section above. This model achieves state of the art results at the time of writing. Trained on the [SNLI 1.0](https://nlp.stanford.edu/projects/snli/) corpus. Train with:
+```bash
+$ bash get_data.sh pretrained_lm snli
+
+$ python train_transformer_snli.py
+```
 
 ### QANet (Reading Comprehension)
 
