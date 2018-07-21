@@ -4,8 +4,37 @@ A collection of NLP models and training scripts
 Work in progress.
 
 ## Installation
+Just clone the repository and install the dependencies:
 
+```bash
+$ git clone https://github.com/VD44/Quick-NLP
+
+$ cd Quick-Nlp-master
+
+$ pip install requirements.txt
+```
 ## Models
+
+### MLSTM Language Model (Baseline)
+
+A recurrent baseline model for comparison to feedforward models. MLSTM is proposed in the paper: [Multiplicative LSTM for sequence modelling](https://arxiv.org/pdf/1609.07959.pdf). MLSTM is able to use different recurrent transition functions for every possible input, allowing it to be more expressive for autoregressive sequence modeling. MLSTM outperforms standard LSTM and even its deep variants.
+
+Model defined under [Quick-NLP/models/mlstm_lm.py](https://github.com/VD44/Quick-NLP/blob/master/models/mlstm_lm.py).
+
+Recommended to train on wikitext-103 dataset:
+```bash
+$ bash get_data.sh wikitext
+
+$ python train_mlstm_lm.py
+```
+
+### Transformer Decoder Language Model
+
+### Transformer Entailment
+
+### QANet (Reading Comprehension)
+
+### Transformer Question Generation
 
 ## Datasets
 
