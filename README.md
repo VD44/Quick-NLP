@@ -52,6 +52,16 @@ $ python train_transformer_snli.py
 ### QANet (Reading Comprehension)
 QANet is a feedforward model for Machine Reading Comprehension that takes advantage of self attention and convolution to achieve state of the art results (at time of writing). It is more accurate and much more effecient than classical recurrent architectures. It is trained on the [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/). The ensemble model described in [QANet: Combining Local Convolution With Global Self-Attention For Reading Comprehension](https://arxiv.org/pdf/1804.09541.pdf) achieves a higher EM (exact match) score than human performance.
 
+<img src="./qanet.png">
+
+The encoder block to the right is used throughout the model, with varying number of convolutional
+layers. The use of convolutions allows for the use of layer dropout, a regularization method commonly used in
+ConvNets. The model uses a pretrained word embedding using 300 dimensional GloVe vectors and a 200 dimensional trainable character embedding.
+
+Download pretrained glove vectors using (Common Crawl 300 dimensional truncated to first 400k words):
+```bash
+$ bash get_data.sh glove
+```
 
 ## Datasets
 
