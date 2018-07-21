@@ -2,6 +2,8 @@
 A collection of NLP models and training scripts.
 
 Work in progress.
+## Contents
+* [Models](#models)
 
 ## Installation
 Just clone the repository and install the dependencies:
