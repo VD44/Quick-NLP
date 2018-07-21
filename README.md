@@ -40,6 +40,8 @@ Model defined under [Quick-NLP/models/transformer_lm.py](https://github.com/VD44
 Pretrained weights can be imported using:
 ```bash
 $ bash get_data.sh pretrained_lm
+# and then train
+$ python train_transformer_lm.py
 ```
 ### Transformer Entailment
 Machine Textual Entailment is the task of labeling a pair of statements as being an entailment, a contradiction, or neutral. In this example we finetune a model initialized with the weights described in the Transformer Language Model section above. This model achieves state of the art results at the time of writing. Trained on the [SNLI 1.0](https://nlp.stanford.edu/projects/snli/) corpus. 
