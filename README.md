@@ -70,9 +70,27 @@ $ bash get_data.sh glove
 $ bash get_data.sh snli
 ```
 
+The SNLI corpus is a benchmark for evaluating natural language inference models. It contained 570k human-written English sentence pairs manually labeled either entailment, contradiction, or neutral. The transformer classification model is used is applied to this task. It uses the pretrained language model params from https://github.com/openai/finetune-transformer-lm. These weights along with the dataset can be downloaded using the get_data.sh script:
+
+```bash
+$ bash get_data.sh snli pretrained_lm
+# and then train
+$ python train_transformer_snli.py
+```
+
+
+
+
 ### SQuAD
+The [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a dataset for machine reading comprehension, questions and passages are created from Wikipedia articles, the answer to every question is a segment of text from the reading passage.
 ```bash
 $ bash get_data.sh squad
+```
+The reading comprehension (QANet) and question generation (Transformer Language Model) models are trained on this dataset.
+```bash
+$ python train_qanet.py
+# or
+$ python train_transformer_qa_gen.py
 ```
 
 ### Wikitext
