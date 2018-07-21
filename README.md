@@ -108,7 +108,7 @@ $ bash get_data.sh pretrained_lm
 $ python train_transformer_snli.py
 ```
 ### SQuAD
-The [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a dataset for machine reading comprehension, questions and passages are created from Wikipedia articles, the answer to every question is a segment of text from the reading passage.
+The [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a dataset for machine reading comprehension, questions and passages are created from Wikipedia articles, the answer to every question is a segment of text from the reading passage. Download using:
 ```bash
 $ bash get_data.sh squad
 ```
