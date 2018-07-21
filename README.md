@@ -27,7 +27,6 @@ $ bash get_data.sh wikitext
 
 $ python train_mlstm_lm.py
 ```
-
 ### Transformer Decoder Language Model
 
 The decoder component of the architecture described in [Attention Is All You Need](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf). The same model was used to generate wikipedia articles in [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf). Can be applied to practically any language modeling task. This model is often used for the task of machine sumerization, here we use it as a comparison to the MLSTM language model as well as for the task of machine question generation.
@@ -40,7 +39,6 @@ Pretrained weights can be imported using:
 ```bash
 $ bash get_data.sh pretrained_lm
 ```
-
 ### Transformer Entailment
 Machine Textual Entailment is the task of labeling a pair of statements as being an entailment, a contradiction, or neutral. In this example we finetune a model initialized with the weights described in the Transformer Language Model section above. This model achieves state of the art results at the time of writing. Trained on the [SNLI 1.0](https://nlp.stanford.edu/projects/snli/) corpus. Train with:
 ```bash
@@ -62,7 +60,6 @@ Download pretrained GloVe vectors using (Common Crawl 300 dimensional truncated 
 ```bash
 $ bash get_data.sh glove
 ```
-
 ## Datasets
 
 ### SNLI
@@ -76,7 +73,6 @@ $ bash get_data.sh pretrained_lm
 # and then train
 $ python train_transformer_snli.py
 ```
-
 ### SQuAD
 The [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a dataset for machine reading comprehension, questions and passages are created from Wikipedia articles, the answer to every question is a segment of text from the reading passage.
 ```bash
@@ -88,7 +84,6 @@ $ python train_qanet.py
 # or
 $ python train_transformer_qa_gen.py
 ```
-
 ### Wikitext
 The WikiText dataset is a collection of over 100 million tokens extracted Wikipedia articles for machine language modeling. It can be downloaded using:
 ```bash
@@ -100,8 +95,6 @@ $ python train_transformer_lm.py
 # or 
 $ python train_mlstm_lm.py
 ```
-
-
 ## Pretrained Vectors
 
 ### GloVe
@@ -114,21 +107,34 @@ Pretrained 768d [ELMo](https://arxiv.org/pdf/1802.05365.pdf) vectors are availab
 ```bash
 $ bash get_data.sh elmo
 ```
-
 ### Pretrained Language Model
 Weights from https://github.com/openai/finetune-transformer-lm. Used to train Transformer Language, Transformer SNLI, and Transformer Question Generation models.
 ```bash
 $ bash get_data.sh pretrained_lm
 ```
-
 ## Training
+General training params (there are others):
+```bash
+--desc # training task description
+--log_dir # dir where logs will be generated
+--save_dir # dir where parameters will be saved
+--submission_dir # dir where model will submit test data responses
+--use_prev_best # if set, model will use best saved params over regular init
+--submit # if set, model will save best params and submit response to test data
+--data_limit # truncate data to this amount
+--n_gpu # number of gpus to use (set to 1 for cpu)
+--n_iter # num epochs
+--n_batch # batch size
+```
 
 ## Saved Params
-
+By default, model parameters that achieve the best results will be saved under /master/save/model_description/best_params.jl. Using the --use_prev_best flag during training will cause the model to use the previous best saved params instead of the regular param initialization.
 ## Papers:
+Main papers used as references:
 
 * [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
 * [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)
 * [QANet: Combining Local Convolution With Global Self-Attention For Reading Comprehension](https://arxiv.org/pdf/1804.09541.pdf)
 * [Learning to Generate Reviews and Discovering Sentiment](https://arxiv.org/pdf/1704.01444.pdf)
 * [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf)
+* [Deep contextualized word representations](https://arxiv.org/pdf/1802.05365.pdf)
