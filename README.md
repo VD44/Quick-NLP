@@ -4,6 +4,22 @@ A collection of NLP models and training scripts.
 Work in progress.
 ## Contents
 * [Models](#models)
+  * [MLSTM](#mlstm-language-model)
+  * [Transformer Decoder Language Model](#transformer-decoder-language-model)
+  * [Transformer Entailment](#transformer-entailment)
+  * [QANet](#qanet)
+* [Datasets](#datasets)
+  * [SNLI](#snli)
+  * [SQuAD](#squad)
+  * [Wikitext](#wikitext)
+* [Pretrained Vectors](#pretrained-vectors)
+  * [GloVe](#glove)
+  * [ELMo](#elmo)
+  * [Pretrained Language Model](#pretrained-language-model)
+* [Training](#training)
+* [Saved Params](#saved-params)
+* [Papers](#papers)
+
 
 ## Installation
 Just clone the repository and install the dependencies:
@@ -17,7 +33,7 @@ $ pip install requirements.txt
 ```
 ## Models
 
-### MLSTM Language Model (Baseline)
+### MLSTM Language Model
 
 A recurrent baseline model for comparison to feedforward models. MLSTM is proposed in the paper: [Multiplicative LSTM for sequence modelling](https://arxiv.org/pdf/1609.07959.pdf). MLSTM is able to use different recurrent transition functions for every possible input, allowing it to be more expressive for autoregressive sequence modeling. MLSTM outperforms standard LSTM and its deeper variants.
 
@@ -56,7 +72,7 @@ $ bash get_data.sh pretrained_lm snli
 
 $ python train_transformer_snli.py
 ```
-### QANet (Reading Comprehension)
+### QANet
 QANet is a feedforward model for Machine Reading Comprehension that takes advantage of self attention and convolution to achieve state of the art results (at time of writing). It is more accurate and much more efficient than classical recurrent architectures. It is trained on the [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/). The ensemble model described in [QANet: Combining Local Convolution With Global Self-Attention For Reading Comprehension](https://arxiv.org/pdf/1804.09541.pdf) achieves a higher EM (exact match) score than human performance.
 
 <img src="./qanet.png">
