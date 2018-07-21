@@ -58,14 +58,44 @@ The encoder block to the right is used throughout the model, with varying number
 layers. The use of convolutions allows for the use of layer dropout, a regularization method commonly used in
 ConvNets. The model uses a pretrained word embedding using 300 dimensional GloVe vectors and a 200 dimensional trainable character embedding.
 
-Download pretrained glove vectors using (Common Crawl 300 dimensional truncated to first 400k words):
+Download pretrained GloVe vectors using (Common Crawl 300 dimensional truncated to first 400k words):
 ```bash
 $ bash get_data.sh glove
 ```
 
 ## Datasets
 
+### SNLI
+```bash
+$ bash get_data.sh snli
+```
+
+### SQuAD
+```bash
+$ bash get_data.sh squad
+```
+
+### Wikitext
+```bash
+$ bash get_data.sh wikitext
+```
+
 ## Pretrained Vectors
+
+### GloVe
+```bash
+$ bash get_data.sh glove
+```
+
+### ELMo
+```bash
+$ bash get_data.sh elmo
+```
+
+### Pretrained Language Model
+```bash
+$ bash get_data.sh pretrained_lm
+```
 
 ## Training
 
