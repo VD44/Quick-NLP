@@ -30,11 +30,13 @@ $ python train_mlstm_lm.py
 
 ### Transformer Decoder Language Model
 
+The decoder component of the architecture described in [Attention Is All You Need](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf). The same model was used to generate wikipedia articles in [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf). Can be applied to practically any language modeling task. Here we use it as a comparison to the MLSTM language model as well as to the task of question generation.
+
+A single block of the model is depicted below:
+
 ### Transformer Entailment
 
 ### QANet (Reading Comprehension)
-
-### Transformer Question Generation
 
 ## Datasets
 
