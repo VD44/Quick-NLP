@@ -1,5 +1,5 @@
 # Quick-NLP
-A collection of NLP models and training scripts.
+>Despite proving to be extremely useful, RNN's and LSTM's are quickly becoming obsolete as newer more efficient networks are being developed. Newer architectures achieve state of the art results and favor the use of attention mechanisms and convolution over recurrent connections. Unfortunately, TensorFlow has been slow to keep up with these rapidly advancing models and many of the existing classes are not easily modifiable to fit the criteria described in recent academic research. To accelerate machine learning discoveries, the models in this library are implemented such that the logic is as transparent and modifiable as possible.
 
 Work in progress.
 ## Contents
