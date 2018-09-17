@@ -34,7 +34,7 @@ $ pip install -r requirements.txt
 
 ### MLSTM Language Model
 
-A recurrent baseline model for comparison to feedforward models. MLSTM is proposed in the paper: [Multiplicative LSTM for sequence modelling](https://arxiv.org/pdf/1609.07959.pdf). MLSTM is able to use different recurrent transition functions for every possible input, allowing it to be more expressive for autoregressive sequence modeling. MLSTM outperforms standard LSTM and its deeper variants.
+A recurrent baseline model for comparison to feedforward models. mLSTM is proposed in the paper: [Multiplicative LSTM for sequence modelling](https://arxiv.org/pdf/1609.07959.pdf). mLSTM is able to use different recurrent transition functions for every possible input, allowing it to be more expressive for autoregressive sequence modeling. mLSTM outperforms standard LSTM and its deeper variants.
 
 Model defined under [Quick-NLP/models/mlstm_lm.py](https://github.com/VD44/Quick-NLP/blob/master/models/mlstm_lm.py).
 
@@ -46,11 +46,11 @@ $ python train_mlstm_lm.py
 ```
 ### Transformer Decoder Language Model
 
-The decoder component of the architecture described in [Attention Is All You Need](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf). The same model was used to generate Wikipedia articles in [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf). Can be applied to practically any language modeling task. This model is often used for the task of machine summarization, here we use it as a comparison to the MLSTM language model as well as for the task of machine question generation.
-
+The decoder component of the architecture described in [Attention Is All You Need](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf). The same model was used to generate Wikipedia articles in [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf). Can be applied to practically any language modeling task. This model is often used for the task of machine summarization, here we use it as a comparison to the mLSTM language model as well as for the task of machine question generation.
+<br/>
 <img src="./transformer_decoder.png" width="25%">
 
-A single block of the decoder is depicted, be default the model uses 12. The multihead attention is masked such that at every timestep the model can only attend to values up until that timestep. This maintains the autoregressive property of the model. The authors of [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) found that a model pretrained on a large corpus of text can be easily finetuned to model new tasks. In their experiements they pretrained a model on 8 P600 GPU's for 30 days. After finetuning, their model beat the state of the art for 9 of the 12 studied tasks. We use the pretrained weights they published from their experiments as a starting point for the language model. Their code is available at: https://github.com/openai/finetune-transformer-lm. 
+A single block of the decoder is depicted, by default the model uses 12. The multihead attention is masked such that at every timestep the model can only attend to values up until that timestep. This maintains the autoregressive property of the model. The authors of [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) found that a model pretrained on a large corpus of text can be easily finetuned to model new tasks. In their experiements they pretrained a model on 8 P600 GPU's for 30 days. After finetuning, their model beat the state of the art for 9 of the 12 studied tasks. We use the pretrained weights they published from their experiments as a starting point for the language model. Their code is available at: https://github.com/openai/finetune-transformer-lm. 
 
 Model defined under [Quick-NLP/models/transformer_lm.py](https://github.com/VD44/Quick-NLP/blob/master/models/transformer_lm.py).
 
@@ -73,16 +73,16 @@ $ python train_transformer_snli.py
 ```
 ### QANet
 QANet is a feedforward model for Machine Reading Comprehension that takes advantage of self attention and convolution to achieve state of the art results (at time of writing). It is more accurate and much more efficient than classical recurrent architectures. It is trained on the [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/). The ensemble model described in [QANet: Combining Local Convolution With Global Self-Attention For Reading Comprehension](https://arxiv.org/pdf/1804.09541.pdf) achieves a higher EM (exact match) score than human performance.
-
+<br/>
 <img src="./qanet.png">
 
 The encoder block to the right is used throughout the model, with varying number of convolutional
-layers. The use of convolutions allows for the use of layer dropout, a regularization method commonly used in
+layers. The use of convolutions allows for the use of layer dropout, a regularization technique commonly used in
 ConvNets. The model uses a pretrained word embedding using 300 dimensional GloVe vectors and a 200 dimensional trainable character embedding.
 
 Model defined under [Quick-NLP/models/qa_net.py](https://github.com/VD44/Quick-NLP/blob/master/models/qa_net.py).
 
-Download pretrained GloVe vectors using (Common Crawl 300 dimensional truncated to first 400k words):
+Download pretrained GloVe vectors using (Common Crawl 300 dimensional truncated to first 400k tokens):
 ```bash
 $ bash get_data.sh glove
 ```
@@ -99,7 +99,7 @@ The SNLI corpus is a benchmark for evaluating natural language inference models.
 ```bash
 $ bash get_data.sh snli
 ```
-The transformer classification model is used is applied to this task. It uses the pretrained language model params from https://github.com/openai/finetune-transformer-lm. These weights downloaded using:
+The transformer classification model is applied to this task. It uses the pretrained language model params from https://github.com/openai/finetune-transformer-lm. These weights can be downloaded using:
 ```bash
 $ bash get_data.sh pretrained_lm
 # and then train
@@ -135,7 +135,7 @@ Pretrained 300d [GloVe](https://nlp.stanford.edu/pubs/glove.pdf) vectors are ava
 $ bash get_data.sh glove
 ```
 ### ELMo
-Pretrained 768d [ELMo](https://arxiv.org/pdf/1802.05365.pdf) vectors are available for download. Matrix contains 40k vectors. Used to train MLSTM language model.
+Pretrained 768d [ELMo](https://arxiv.org/pdf/1802.05365.pdf) vectors are available for download. Matrix contains 40k vectors. Used to train mLSTM language model.
 ```bash
 $ bash get_data.sh elmo
 ```
@@ -162,7 +162,7 @@ General training params (there are others):
 $ python train_transformer_lm --n_batch 8 --n_iter 3  --submit
 ```
 ## Saved Params
-By default, model parameters that achieve the best results will be saved under /master/save/model_description/best_params.jl. Using the --use_prev_best flag during training will cause the model to use the previous best saved params instead of the regular param initialization.
+By default, model parameters that achieve the best results will be saved under /master/save/model_description/best_params.jl. Using the --use_prev_best flag during training will cause the model to use the previous best saved parameters instead of the regular parameter initialization.
 ## Papers:
 Main papers used as references:
 * [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
