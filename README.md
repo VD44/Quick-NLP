@@ -12,10 +12,10 @@ Despite proving to be extremely useful, RNN's and LSTM's are quickly becoming ob
   * [SNLI](#snli)
   * [SQuAD](#squad)
   * [Wikitext](#wikitext)
-* [Pretrained Vectors](#pretrained-vectors)
+* [Pre-Trained Vectors](#pre-trained-vectors)
   * [GloVe](#glove)
   * [ELMo](#elmo)
-  * [Pretrained Language Model](#pretrained-language-model)
+  * [Pre-Trained Language Model](#pre-trained-language-model)
 * [Training](#training)
 * [Saved Params](#saved-params)
 * [Papers](#papers)
@@ -50,7 +50,7 @@ The decoder component of the architecture described in [Attention Is All You Nee
 <br/>
 <img src="./transformer_decoder.png" width="25%">
 
-A single block of the decoder is depicted, by default the model uses 12. The multihead attention is masked such that at every timestep the model can only attend to values up until that timestep. This maintains the autoregressive property of the model. The authors of [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) found that a model pre-trained on a large corpus of text can be easily finetuned to model new tasks. In their experiements they pre-trained a model on 8 P600 GPU's for 30 days. After finetuning, their model beat the state of the art for 9 of the 12 studied tasks. We use the pre-trained weights they published from their experiments as a starting point for the language model. Their code is available at: https://github.com/openai/finetune-transformer-lm. 
+A single block of the decoder is depicted, by default the model uses 12. The multihead attention is masked such that at every time step the model can only attend to values up until that time step. This maintains the autoregressive property of the model. The authors of [Improving Language Understanding by Generative Pre-Training](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf) found that a model pre-trained on a large corpus of text can be easily fine-tuned to model new tasks. In their experiments they pre-trained a model on 8 P600 GPU's for 30 days. After fine-tuning, their model beat the state of the art for 9 of the 12 studied tasks. We use the pre-trained weights they published from their experiments as a starting point for the language model. Their code is available at: https://github.com/openai/finetune-transformer-lm. 
 
 Model defined under [Quick-NLP/models/transformer_lm.py](https://github.com/VD44/Quick-NLP/blob/master/models/transformer_lm.py).
 
@@ -61,7 +61,7 @@ $ bash get_data.sh pretrained_lm
 $ python train_transformer_lm.py
 ```
 ### Transformer Entailment
-Machine Textual Entailment is the task of labeling a pair of statements as being an entailment, a contradiction, or neutral. In this example we finetune a model initialized with the weights described in the Transformer Language Model section above. This model achieves state of the art results at the time of writing. Trained on the [SNLI 1.0](https://nlp.stanford.edu/projects/snli/) corpus. 
+Machine Textual Entailment is the task of labeling a pair of statements as being an entailment, a contradiction, or neutral. In this example we fine-tune a model initialized with the weights described in the Transformer Language Model section above. This model achieves state of the art results at the time of writing. Trained on the [SNLI 1.0](https://nlp.stanford.edu/projects/snli/) corpus. 
 
 Model defined under [Quick-NLP/models/transformer_clf.py](https://github.com/VD44/Quick-NLP/blob/master/models/transformer_clf.py).
 
@@ -127,7 +127,7 @@ $ python train_transformer_lm.py
 # or 
 $ python train_mlstm_lm.py
 ```
-## Pretrained Vectors
+## Pre-Trained Vectors
 
 ### GloVe
 Pre-trained 300d [GloVe](https://nlp.stanford.edu/pubs/glove.pdf) vectors are available for download. Matrix is truncated to the first 400k tokens. Vectors are used to train QANet.
@@ -139,7 +139,7 @@ Pre-trained 768d [ELMo](https://arxiv.org/pdf/1802.05365.pdf) vectors are availa
 ```bash
 $ bash get_data.sh elmo
 ```
-### Pretrained Language Model
+### Pre-Trained Language Model
 Weights from https://github.com/openai/finetune-transformer-lm. Used to train Transformer Language, Transformer SNLI, and Transformer Question Generation models.
 ```bash
 $ bash get_data.sh pretrained_lm
