@@ -28,7 +28,7 @@ $ git clone https://github.com/VD44/Quick-NLP
 
 $ cd Quick-Nlp-master
 
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 ```
 ## Models
 
